@@ -8,7 +8,6 @@ module deserializador(
     
     output status_out,
     output data_out,
-    output data_ready,
-    
+    output data_ready
 );
 
