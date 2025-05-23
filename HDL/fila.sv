@@ -7,5 +7,9 @@ module fila(
     input clock,
     
     output data_out,
-    output len_out,
+    output len_out
 );
+
+reg bit_0, bit_1, bit_2, bit_3, bit_4, bit_5, bit_6, bit_7;
+
+
