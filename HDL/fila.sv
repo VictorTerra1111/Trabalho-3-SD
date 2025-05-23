@@ -1,5 +1,5 @@
 module fila(
-    input data_in,
+    input [7:0] data_in,
     input enqueue_in,
     input dequeue_in
     
