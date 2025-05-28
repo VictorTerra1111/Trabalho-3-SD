@@ -23,7 +23,7 @@ module top(
     logic enqueue_in, ack_in, clk_10KHz, clk_100KHz;
     logic data_ready_des; // sai de des e vai para fila no enqueue_in
     logic [7:0] data_out_des;
-
+    assign ack_in = (len_out < 8);
 
 deserializador des(
     .reset(reset),
@@ -31,9 +31,9 @@ deserializador des(
     
     .data_in(data_in),                  // input do modulo
     .write_in(write_in),                // input do modulo
-    .status_out(status_out)             // output do modulo
-    .ack_in(.ack_in)                    // vem de fila
-    .data_out(data_out_des)             // vem do des vai para fila (data in)
+    .status_out(status_out),            // output do modulo
+    .ack_in(ack_in),                    // vem de fila
+    .data_out(data_out_des),             // vem do des vai para fila (data in)
     .data_ready(data_ready_des)         // sai do des vai para faila
 );  
 
@@ -42,15 +42,15 @@ fila fil(
     .clk_10KHz(clk_10KHz),
 
     .data_in(data_out_des),             // vem de des
-    .len_out(.ack_in),                  // vem de des
+    .len_out(ack_in),                  // vem de des
     .enqueue_in(data_ready_des),        // vem do des
     .data_out(data_out),                // vai para top
     .dequeue_in(dequeue_in)             // vem do top
 );
 
 divider divisor(
-    .clock1M(clock1M), //
+    .clock1M(clock1M),
     .reset(reset),
     .clk_10KHz(clk_10KHz),
-    .clk_100KHz(clk_100KHz),
+    .clk_100KHz(clk_100KHz)
 );
