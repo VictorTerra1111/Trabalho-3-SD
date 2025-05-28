@@ -4,8 +4,8 @@ vmap work work
 
 vlog -work work ../HDL/deserializador.sv
 
-vlog -work work tb_deseri.sv
-vsim -voptargs=+acc work.tb_deseri
+vlog -work work tb_deserializador.sv
+vsim -voptargs=+acc work.tb_deserializador
 
 quietly set StdArithNoWarnings 1
 quietly set StdVitalGlitchNoWarnings 1
