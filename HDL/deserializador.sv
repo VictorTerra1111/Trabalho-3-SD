@@ -22,7 +22,6 @@ module deserializador(
         if (reset) begin
             data_out <= 8'b0;
             status_out <= 0;
-            state <= IDLE;
             data_ready <= 0;
             vector <= 8'b0;
             state <= ENCHE_FILA;
@@ -30,7 +29,7 @@ module deserializador(
                 case (state)
                     ENCHE_FILA: begin
                         if(write_in) begin
-                            vector << data_in;
+                            vector <= {vector[6:0], data_in};
                             tam <= tam + 1;
                         end
 
@@ -43,7 +42,7 @@ module deserializador(
                         status_out <= 1;
                         data_out <= vector;
                         if(ack_in) begin
-                            states <= H_ACK;
+                            state <= H_ACK;
                         end
                     end
                     H_ACK: begin
