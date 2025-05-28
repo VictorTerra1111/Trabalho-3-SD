@@ -1,13 +1,23 @@
+/*
+Criação de um módulo top. A cada 8 bits recebidos pelo
+deserializador, uma palavra de 8 bits deverá ser colocada na pilha. 
+O módulo top deverá receber
+um sinal de clock de 1MHz. Dois processos internos deverão utilizar 
+o sinal de 1MHz para
+gerar dois sinais de clock diferentes: um de 100KHz e outro de 10KHz, alimentando os
+módulos anteriores.
+*/
+
 module top(
-    input clock,
-    input reset,
+    input logic clock1M,
+    input logic reset,
 
-    input data_in, // vai para deserializador
-    input write_in, // vai para deserializador
-    input dequeue_in, // vai para fila
+    input logic data_in, // vai para deserializador
+    input logic write_in, // vai para deserializador
+    input logic dequeue_in, // vai para fila
 
-    output data_out, // vem de fila
-    output status_out // vem do deserializador
+    output logic data_out, // vem de fila
+    output logic status_out // vem do deserializador
 );
 
     logic enqueue_in, ack_in;
@@ -17,7 +27,7 @@ module top(
 
 deserializador des(
     .reset(reset),
-    .clock(clock),
+    .clock1M(clock1M),
     
     .data_in(data_in),                  // input do modulo
     .write_in(write_in),                // input do modulo
@@ -29,7 +39,7 @@ deserializador des(
 
 fila fil(
     .reset(reset),
-    .clock(clock),
+    .clock1M(clock1M),
 
     .data_in(data_out_des),             // vem de des
     .len_out(.ack_in),                  // vem de des
