@@ -1,54 +1,79 @@
-`timescale 1ns/1ps
+module tb_deserializador;
 
-module tb_deseri #();
-    logic data_in,
-
-    logic write_in,
-    logic ack_in,
-
-    logic reset,
-    logic clk_100KHz,
+    logic data_in;
+    logic write_in;
+    logic ack_in;
+    logic reset;
+    logic clk_100KHz;
     
-    logic status_out,
-    logic [7:0]data_out,
-    logic data_ready
+    logic status_out;
+    logic [7:0] data_out;
+    logic data_ready;
 
-deserializador dese(
-    .data_in(data_in),
-    .write_in(write_in),
-    .ack_in(ack_in),
-    .reset(reset),
-    .clk_100KHz(clk_100KHz),
-    .status_out(status_out),
-    .data_out(data_out),
-    .data_ready(data_ready)
-);
+    // Instância do módulo
+    deserializador dut (
+        .data_in(data_in),
+        .write_in(write_in),
+        .ack_in(ack_in),
+        .reset(reset),
+        .clk_100KHz(clk_100KHz),
+        .status_out(status_out),
+        .data_out(data_out),
+        .data_ready(data_ready)
+    );
 
-  initial clock = 0;
-  always #50 clock = ~clock; // uaaaa
+    // Clock 100kHz (~10us período)
+    always #5 clk_100KHz = ~clk_100KHz;
 
-  initial begin
-    reset = 1;
-    #10
-    reset = 0;
-    #10
-    cmd = 4'b0001;  
-    #10
-    cmd = 4'b1010; 
-    #10
-    cmd = 4'b0001; 
-    #10
-    cmd = 4'b1110; 
-    #20
-    cmd = 4'b0011; 
-    #10
-    cmd = 4'b1011; 
-    #10
-    cmd = 4'b0010; 
-    #10
-    cmd = 4'b1110; 
-    #20
-    $stop;
-  end
+    initial begin
+        // Inicialização
+        clk_100KHz = 0;
+        reset = 1;
+        data_in = 0;
+        write_in = 0;
+        ack_in = 0;
 
-endmodule: tb_final
+        #10;
+        reset = 0;
+
+        // Enviar 8 bits: 1010_1101 (0xAD)
+        send_bit(1);
+        send_bit(0);
+        send_bit(1);
+        send_bit(0);
+        send_bit(1);
+        send_bit(1);
+        send_bit(0);
+        send_bit(1);
+
+        // Aguarda o módulo montar o byte e sinalizar data_ready
+        wait(data_ready == 1);
+        $display("Byte recebido: %b", data_out);
+        assert(data_out == 8'b10101101) else $fatal("Erro: valor incorreto recebido");
+
+        // Envia ack
+        #10;
+        ack_in = 1;
+        #10;
+        ack_in = 0;
+
+        // Espera limpar
+        #20;
+        assert(data_ready == 0) else $fatal("Erro: data_ready não foi limpo");
+
+        $display("Teste concluído com sucesso.");
+        $finish;
+    end
+
+    // Tarefa auxiliar para enviar 1 bit por ciclo com write_in ativo
+    task send_bit(input logic bit_val);
+        begin
+            @(posedge clk_100KHz);
+            data_in = bit_val;
+            write_in = 1;
+            @(posedge clk_100KHz);
+            write_in = 0;
+        end
+    endtask
+
+endmodule
