@@ -1,14 +1,14 @@
 module divider (
-  input wire clk_in,
+  input wire clock1M,
   input wire reset,
   output logic clk_10KHz,
   output logic clk_100KHz
-)
+);
 
   reg [0:7] clk10_count;
   reg [0:7] clk100_count;
 
-  always_ff @(posedge clk_in or posedge reset) begin
+  always_ff @(posedge clock1M or posedge reset) begin
         if (reset) begin
             clk_10KHz <= 0;
             clk_100KHz <= 0;
