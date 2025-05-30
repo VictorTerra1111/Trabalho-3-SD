@@ -14,7 +14,6 @@ module top(
     logic data_ready_des; 
     logic [2:0] len_out;
     logic [7:0] data_out_des;
-    logic ack_in;
 
 deserializador des(
     .reset(reset),
@@ -23,7 +22,7 @@ deserializador des(
     .data_in(data_in),               
     .write_in(write_in),           
     .status_out(status_out),        
-    .ack_in(ack_in),                
+    .ack_in(len_out),                
     .data_out(data_out_des),            
     .data_ready(data_ready_des)        
 );  
