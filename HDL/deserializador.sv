@@ -18,7 +18,7 @@ module deserializador(
     logic [7:0] vector;
     logic [3:0] tam;
 
-    always_ff @(posedge clk_100KHz or posedge reset) begin
+    always @(posedge clk_100KHz or posedge reset) begin
         if (reset) begin
             data_out <= 8'b0;
             status_out <= 0;
@@ -36,7 +36,9 @@ module deserializador(
 
                         if(tam == 8) begin
                             state <= SEND_FILA;
-                        end
+                        end else begin
+				state <= ENCHE_FILA;
+			end
                     end
                     SEND_FILA: begin
                         data_ready <= 1;
@@ -44,16 +46,20 @@ module deserializador(
                         data_out <= vector;
                         if(ack_in) begin
                             state <= H_ACK;
-                        end
+                        end // OPERADOR TERNARIO TAMBEM FUNCIONA
                     end
                     H_ACK: begin
-                        data_ready <= 0;
-                        data_out <= 8'b0;
-                        status_out <= 0;
-                        vector <= 8'b0;
-			tam <= 4'b0;
-			state <= ENCHE_FILA;
-                    end
+			    if(ack_in == 0) begin
+				state <= SEND_FILA;
+			end else
+	                        data_ready <= 0;
+	                        data_out <= 8'b0;
+	                        status_out <= 0;
+	                        vector <= 8'b0;
+				tam <= 4'b0;
+				state <= ENCHE_FILA;
+		    	end
+		    end
                 endcase
         end 
     end 
