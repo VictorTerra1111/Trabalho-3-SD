@@ -14,7 +14,7 @@ module divider (
       clk_100KHz <= 0;
       clk100_cont <= 0;
     end else begin
-      if (clk100_count == 4) begin
+      if (clk100_cont == 4) begin
         clk_100KHz <= ~clk_100KHz;
         clk100_cont <= 0;
       end else begin
@@ -29,7 +29,7 @@ module divider (
       clk_10KHz <= 0;
       clk10_cont <= 0;
     end else begin
-      if (clk10_count == 49) begin
+      if (clk10_cont == 49) begin
         clk_10KHz <= ~clk_10KHz;
         clk10_cont <= 0;
       end else begin
