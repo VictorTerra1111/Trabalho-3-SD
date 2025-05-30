@@ -6,7 +6,7 @@ module fila(
     input logic clk_10KHz,
 
     output logic [7:0] data_out,
-    output logic [2:0] len_out 
+    output logic [3:0] len_out 
 );
 
     logic [7:0] vector [7:0]; 
