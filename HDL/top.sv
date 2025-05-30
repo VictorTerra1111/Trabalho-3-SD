@@ -45,7 +45,7 @@ divider divisor(
     .clk_100KHz(clk_100KHz)
 );
 
-verifica_len_out(
+verifica_len_out verificador(
     .len_out(len_out),
     .ack(ack_in)
 );
