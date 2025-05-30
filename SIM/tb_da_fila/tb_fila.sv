@@ -8,8 +8,8 @@ module tb_fila;
     logic reset;
     logic clk_10KHz;
 
-    wire [7:0] data_out;
-    wire [2:0] len_out;
+    logic [7:0] data_out;
+    logic [2:0] len_out;
 
     fila dut (
         .data_in(data_in),
@@ -24,41 +24,35 @@ module tb_fila;
     initial clk_10KHz = 0;
     always #50 clk_10KHz = ~clk_10KHz;
 
-    task enqueue(input [7:0] value);
-        begin
-            data_in = value;
-            enqueue_in = 1;
-            @(posedge clk_10KHz);
-            enqueue_in = 0;
-        end
-    endtask
-
-    task dequeue;
-        begin
-            dequeue_in = 1;
-            @(posedge clk_10KHz);
-            dequeue_in = 0;
-        end
-    endtask
-
     initial begin
-        data_in = 0;
+        data_in = 8'd0;
         enqueue_in = 0;
         dequeue_in = 0;
         reset = 1;
-        @(posedge clk_10KHz);
+        #100;
         reset = 0;
 
-        enqueue(8'hA1);
-        enqueue(8'hB2);
-        enqueue(8'hC3);
+        data_in = 8'h11; enqueue_in = 1; #50; enqueue_in = 0;
+        data_in = 8'h22; enqueue_in = 1; #50; enqueue_in = 0;
+        data_in = 8'h33; enqueue_in = 1; #50; enqueue_in = 0;
+        data_in = 8'h44; enqueue_in = 1; #50; enqueue_in = 0;
+        data_in = 8'h55; enqueue_in = 1; #50; enqueue_in = 0;
+        data_in = 8'h66; enqueue_in = 1; #50; enqueue_in = 0;
+        data_in = 8'h77; enqueue_in = 1; #50; enqueue_in = 0;
+        data_in = 8'h88; enqueue_in = 1; #50; enqueue_in = 0;
+        data_in = 8'h99; enqueue_in = 1; #50; enqueue_in = 0;
 
-        @(posedge clk_10KHz);
+        dequeue_in = 1; #50; dequeue_in = 0;
+        dequeue_in = 1; #50; dequeue_in = 0;
+        dequeue_in = 1; #50; dequeue_in = 0;
+        dequeue_in = 1; #50; dequeue_in = 0;
+        dequeue_in = 1; #50; dequeue_in = 0;
+        dequeue_in = 1; #50; dequeue_in = 0;
+        dequeue_in = 1; #50; dequeue_in = 0;
+        dequeue_in = 1; #50; dequeue_in = 0;
+        dequeue_in = 1; #50; dequeue_in = 0;
 
-        dequeue();
-        dequeue();
-        #200;
+        #100;
         $finish;
     end
-
 endmodule
