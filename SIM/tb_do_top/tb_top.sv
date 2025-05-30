@@ -7,7 +7,7 @@ module tb_top;
     logic data_in;
     logic write_in;
     logic dequeue_in;
-    logic data_out;
+    logic [7:0] data_out;
     logic status_out;
 
     top dut (
