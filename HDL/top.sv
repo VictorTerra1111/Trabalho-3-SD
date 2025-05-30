@@ -44,3 +44,4 @@ divider divisor(
     .clk_10KHz(clk_10KHz),
     .clk_100KHz(clk_100KHz)
 );
+endmodule
