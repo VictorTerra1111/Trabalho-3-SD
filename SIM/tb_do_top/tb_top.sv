@@ -7,8 +7,8 @@ module tb_top;
     logic data_in;
     logic write_in;
     logic dequeue_in;
-    wire data_out;
-    wire status_out;
+    logic data_out;
+    logic status_out;
 
     top dut (
         .clock1M(clock1M),
