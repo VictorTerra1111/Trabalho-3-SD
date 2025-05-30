@@ -1,13 +1,11 @@
 `timescale 1ns/1ps
 
-module tb_deserializador;
-
+module tb_deserializador_sem_tasks;
     logic data_in;
     logic write_in;
     logic ack_in;
     logic reset;
     logic clk_100KHz;
-    
     logic status_out;
     logic [7:0] data_out;
     logic data_ready;
@@ -23,48 +21,30 @@ module tb_deserializador;
         .data_ready(data_ready)
     );
 
+    initial clk_100KHz = 0;
     always #5 clk_100KHz = ~clk_100KHz;
 
     initial begin
-        clk_100KHz = 0;
-        reset = 1;
         data_in = 0;
         write_in = 0;
         ack_in = 0;
-
+        reset = 1;
         #10;
         reset = 0;
 
-        // Enviar 8 bits: 1010_1101 (0xAD)
-        send_bit(1);
-        send_bit(0);
-        send_bit(1);
-        send_bit(0);
-        send_bit(1);
-        send_bit(1);
-        send_bit(0);
-        send_bit(1);
-
-        wait(data_ready == 1);
-
-        #10;
-        ack_in = 1;
-        #10;
-        ack_in = 0;
-
+        // 1010_1101 (0xAD)
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
         #20;
-
+        ack_in = 1; #10;
+        ack_in = 0; #10;
+        #20;
         $finish;
     end
-
-    task send_bit(input logic bit_val);
-        begin
-            @(posedge clk_100KHz);
-            data_in = bit_val;
-            write_in = 1;
-            @(posedge clk_100KHz);
-            write_in = 0;
-        end
-    endtask
-
 endmodule
