@@ -11,7 +11,8 @@ module top(
 );
 
     logic enqueue_in, ack_in, clk_10KHz, clk_100KHz;
-    logic data_ready_des, len_out;
+    logic data_ready_des; 
+    logic [2:0] len_out;
     logic [7:0] data_out_des;
     assign ack_in = (len_out < 8);
 
