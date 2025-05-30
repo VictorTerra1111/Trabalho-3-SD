@@ -9,7 +9,7 @@ module divider (
   reg [7:0] clk100_cont;
 
   // clk_100KHz
-  always_ff @(posedge clock1M or posedge reset) begin
+  always @(posedge clock1M or posedge reset) begin
     if (reset) begin
       clk_100KHz <= 0;
       clk100_cont <= 0;
@@ -24,7 +24,7 @@ module divider (
   end
 
   // clk_10KHz
-  always_ff @(posedge clock1M or posedge reset) begin
+  always @(posedge clock1M or posedge reset) begin
     if (reset) begin
       clk_10KHz <= 0;
       clk10_cont <= 0;
