@@ -2,7 +2,7 @@ if {[file isdirectory work]} {vdel -all -lib work}
 vlib work
 vmap work work
 
-vlog -work work ../HDL/deserializador.sv
+vlog -work work ../../HDL/deserializador.sv
 
 vlog -work work tb_deserializador.sv
 vsim -voptargs=+acc work.tb_deserializador
