@@ -6,10 +6,10 @@ module fila(
     input logic clk_10KHz,
 
     output logic [7:0] data_out,
-    output logic [2:0] len_out // até 8 elementos
+    output logic [2:0] len_out 
 );
 
-    logic [7:0] vector [7:0]; // 8 posições de 8 bits
+    logic [7:0] vector [7:0]; 
     logic [2:0] tam_vet;
 
     integer i;
