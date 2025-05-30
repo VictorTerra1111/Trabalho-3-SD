@@ -23,47 +23,76 @@ module tb_top;
     initial clock1M = 0;
     always #0.5 clock1M = ~clock1M;
 
-    task send_bit(input logic bit_val);
-        begin
-            data_in = bit_val;
-            write_in = 1;
-            repeat (10) @(posedge clock1M); 
-            write_in = 0;
-            repeat (10) @(posedge clock1M); 
-        end
-    endtask
-
-    task send_byte(input [7:0] byte_val);
-        integer j;
-        begin
-            for (j = 7; j >= 0; j = j - 1)
-                send_bit(byte_val[j]); 
-        end
-    endtask
-
     initial begin
         data_in = 0;
         write_in = 0;
         dequeue_in = 0;
         reset = 1;
-        repeat (10) @(posedge clock1M);
+        #10;
         reset = 0;
 
-        send_byte(8'hA5);
-        send_byte(8'h3C);
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
 
-        repeat (1000) @(posedge clock1M);
+        #1500;
+        dequeue_in = 1; #1; dequeue_in = 0;
+        #500;
 
-        dequeue_in = 1;
-        @(posedge clock1M);
-        dequeue_in = 0;
-        repeat (100) @(posedge clock1M);
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
 
-        dequeue_in = 1;
-        @(posedge clock1M);
-        dequeue_in = 0;
-        repeat (100) @(posedge clock1M);
+        #1500;
+        dequeue_in = 1; #1; dequeue_in = 0;
+        #500;
 
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        #1000;
         $finish;
     end
 endmodule
