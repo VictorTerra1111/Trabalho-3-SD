@@ -40,3 +40,10 @@ Repositório para armazenar HDL para o terceiro trabalho de Sistemas Digitais
 
 ### data_ready:
   Sinal que fica alto quando o vector estiver com 8 bits
+
+## Módulo da fila (Este módulo deverá funcionar a 10KH). 
+  A fila possui um tamanho fixo de 8 espaços, cada espaço com 8 bits. 
+  O sinal len_out informa o número de espaços utilizados. 
+  Para colocar um elemento na fila, o elemento deverá aparecer no sinal data_in e o sinal enqueue_in deverá estar alto.
+  Para remover um elemento da fila, o sinal dequeue_in deve ser levantado e, no ciclo
+subsequente, o dado removido deverá aparecer no sinal data_out. 
