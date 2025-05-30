@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module tb_clock_divider();
+module tb_divisor();
 
     logic clock1M;
     logic reset;
@@ -8,7 +8,7 @@ module tb_clock_divider();
     logic clk_10KHz;
     logic clk_100KHz;
 
-    divider dut (
+    clock_divisor dut (
         .clock1M(clock1M),
         .reset(reset),
         .clk_10KHz(clk_10KHz),
