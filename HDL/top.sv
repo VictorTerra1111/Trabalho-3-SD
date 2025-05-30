@@ -22,7 +22,7 @@ deserializador des(
     .data_in(data_in),               
     .write_in(write_in),           
     .status_out(status_out),        
-    .ack_in(len_out),                
+    .ack_in(ack_in),                
     .data_out(data_out_des),            
     .data_ready(data_ready_des)        
 );  
@@ -32,7 +32,7 @@ fila fil(
     .clk_10KHz(clk_10KHz),
 
     .data_in(data_out_des),          
-    .len_out(ack_in),                
+    .len_out(len_out),                
     .enqueue_in(data_ready_des),       
     .data_out(data_out),                
     .dequeue_in(dequeue_in)           
@@ -43,5 +43,10 @@ divider divisor(
     .reset(reset),
     .clk_10KHz(clk_10KHz),
     .clk_100KHz(clk_100KHz)
+);
+
+verifica_len_out(
+    .len_out(len_out),
+    .ack(ack_in)
 );
 endmodule
