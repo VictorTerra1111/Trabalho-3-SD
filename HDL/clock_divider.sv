@@ -1,6 +1,6 @@
 module divider (
-    input wire clock1M,
-    input wire reset,
+    input logic clock1M,
+    input logic reset,
     output logic clk_10KHz,
     output logic clk_100KHz
 );
