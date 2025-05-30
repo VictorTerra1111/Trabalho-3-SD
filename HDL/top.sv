@@ -6,7 +6,7 @@ module top(
     input logic write_in, 
     input logic dequeue_in,
 
-    output logic data_out,
+    output logic [7:0] data_out,
     output logic status_out 
 );
 
