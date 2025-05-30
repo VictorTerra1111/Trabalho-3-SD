@@ -38,7 +38,7 @@ fila fil(
     .dequeue_in(dequeue_in)           
 );
 
-divider divisor(
+clock_divisor divisor(
     .clock1M(clock1M),
     .reset(reset),
     .clk_10KHz(clk_10KHz),
