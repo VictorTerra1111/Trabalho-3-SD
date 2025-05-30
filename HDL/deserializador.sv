@@ -24,45 +24,44 @@ module deserializador(
             status_out <= 0;
             data_ready <= 0;
             vector <= 8'b0;
-	    tam <= 4'b0;
+            tam <= 4'b0;
             state <= ENCHE_FILA;
         end else begin
-                case (state)
-                    ENCHE_FILA: begin
-                        if(write_in) begin
-                            vector <= {vector[6:0], data_in};
-                            tam <= tam + 1;
-                        end
-
-                        if(tam == 8) begin
-                            state <= SEND_FILA;
-                        end else begin
-			    state <= ENCHE_FILA;
-			end
+            case (state)
+                ENCHE_FILA: begin
+                    if (tam == 7 && write_in) begin
+                        vector <= {vector[6:0], data_in};
+                        tam <= 8;
+                        state <= SEND_FILA;
+                    end else if (write_in) begin
+                        vector <= {vector[6:0], data_in};
+                        tam <= tam + 1;
+                        state <= ENCHE_FILA;
+                    end else state <= ENCHE_FILA;
+                end
+                SEND_FILA: begin
+                    data_ready <= 1;
+                    status_out <= 1;
+                    data_out <= vector;
+                    if (ack_in) begin
+                        state <= H_ACK;
+                    end else begin
+                        state <= SEND_FILA;
                     end
-                    SEND_FILA: begin // OPERADOR TERNARIO TAMBEM FUNCIONA
-                        data_ready <= 1;
-                        status_out <= 1;
-                        data_out <= vector;
-                        if(ack_in) begin
-                            state <= H_ACK;
-                        end else begin
-			    state <= SEND_FILA;
-			end
+                end
+                H_ACK: begin
+                    if (!ack_in) begin
+                        data_ready <= 0;
+                        data_out <= 8'b0;
+                        status_out <= 0;
+                        vector <= 8'b0;
+                        tam <= 4'b0;
+                        state <= ENCHE_FILA;
+                    end else begin
+                        state <= H_ACK;
                     end
-                    H_ACK: begin
-			    if(ack_in) begin
-				state <= SEND_FILA;
-			end else begin
-	                        data_ready <= 0;
-	                        data_out <= 8'b0;
-	                        status_out <= 0;
-	                        vector <= 8'b0;
-				tam <= 4'b0;
-				state <= ENCHE_FILA;
-		    	end
-		    end
-                endcase
+                end
+            endcase
         end 
     end 
 endmodule
