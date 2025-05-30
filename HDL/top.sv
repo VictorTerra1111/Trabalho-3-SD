@@ -47,6 +47,6 @@ clock_divisor divisor(
 
 verifica_len_out verificador(
     .len_out(len_out),
-    .ack(ack_in)
+    .ack_in(ack_in)
 );
 endmodule
