@@ -37,16 +37,18 @@ module deserializador(
                         if(tam == 8) begin
                             state <= SEND_FILA;
                         end else begin
-				state <= ENCHE_FILA;
+			    state <= ENCHE_FILA;
 			end
                     end
-                    SEND_FILA: begin
+                    SEND_FILA: begin // OPERADOR TERNARIO TAMBEM FUNCIONA
                         data_ready <= 1;
                         status_out <= 1;
                         data_out <= vector;
                         if(ack_in) begin
                             state <= H_ACK;
-                        end // OPERADOR TERNARIO TAMBEM FUNCIONA
+                        end else begin
+			    state <= SEND_FILA;
+			end
                     end
                     H_ACK: begin
 			    if(ack_in) begin
