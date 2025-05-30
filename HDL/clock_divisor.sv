@@ -1,4 +1,4 @@
-module divider (
+module clock_divisor (
     input logic clock1M,
     input logic reset,
     output logic clk_10KHz,
