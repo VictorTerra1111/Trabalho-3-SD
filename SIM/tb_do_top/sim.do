@@ -5,6 +5,8 @@ vmap work work
 vlog -work work ../../HDL/fila.sv
 vlog -work work ../../HDL/deserializador.sv
 vlog -work work ../../HDL/clock_divider.sv
+vlog -work work ../../HDL/verifica_len_out.sv
+
 vlog -work work ../../HDL/top.sv
 
 vlog -work work tb_top.sv
