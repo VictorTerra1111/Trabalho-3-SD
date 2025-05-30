@@ -53,7 +53,7 @@ module deserializador(
                     H_ACK: begin
 			    if(ack_in) begin
 				state <= SEND_FILA;
-			end else
+			end else begin
 	                        data_ready <= 0;
 	                        data_out <= 8'b0;
 	                        status_out <= 0;
