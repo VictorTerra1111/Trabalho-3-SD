@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module tb_deserializador_sem_tasks;
+module tb_deserializador;
     logic data_in;
     logic write_in;
     logic ack_in;
