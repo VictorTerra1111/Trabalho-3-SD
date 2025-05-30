@@ -14,7 +14,7 @@ module top(
     logic data_ready_des; 
     logic [2:0] len_out;
     logic [7:0] data_out_des;
-    assign ack_in = (len_out < 8);
+    logic ack_in;
 
 deserializador des(
     .reset(reset),
