@@ -1,12 +1,11 @@
 `timescale 1ns/1ps
 
-module tb_divisor();
+module tb_divisor;
 
     logic clock1M;
     logic reset;
-
-    logic clk_10KHz;
-    logic clk_100KHz;
+    wire clk_10KHz;
+    wire clk_100KHz;
 
     clock_divisor dut (
         .clock1M(clock1M),
@@ -15,23 +14,13 @@ module tb_divisor();
         .clk_100KHz(clk_100KHz)
     );
 
+    initial clock1M = 0;
     always #0.5 clock1M = ~clock1M;
-
     initial begin
-        clock1M = 0;
-        reset = 1;
-        
-        #2;
-        reset = 0;
-
-        repeat (200) @(posedge clock1M);
-
         reset = 1;
         #2;
         reset = 0;
-
-        repeat (100) @(posedge clock1M);
-
+        #1000;
         $finish;
     end
 
