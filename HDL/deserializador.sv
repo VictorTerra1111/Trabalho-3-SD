@@ -49,7 +49,7 @@ module deserializador(
                         end // OPERADOR TERNARIO TAMBEM FUNCIONA
                     end
                     H_ACK: begin
-			    if(ack_in == 0) begin
+			    if(ack_in) begin
 				state <= SEND_FILA;
 			end else
 	                        data_ready <= 0;
