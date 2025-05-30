@@ -14,7 +14,7 @@ module fila(
 
     integer i;
 
-    always_ff @(posedge clk_10KHz or posedge reset) begin
+    always @(posedge clk_10KHz or posedge reset) begin
         if (reset) begin
             data_out <= 8'b0;
             len_out <= 0;
