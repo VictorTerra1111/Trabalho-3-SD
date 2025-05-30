@@ -5,20 +5,20 @@ module divider (
     output logic clk_100KHz
 );
 
-  reg [7:0] clk10_count;
-  reg [7:0] clk100_count;
+  reg [7:0] clk10_cont;
+  reg [7:0] clk100_cont;
 
   // clk_100KHz
   always_ff @(posedge clock1M or posedge reset) begin
     if (reset) begin
       clk_100KHz <= 0;
-      clk100_count <= 0;
+      clk100_cont <= 0;
     end else begin
-      if (clk100_count == 4) begin // 1MHz / (4+1)/2 = 100KHz
+      if (clk100_count == 4) begin
         clk_100KHz <= ~clk_100KHz;
-        clk100_count <= 0;
+        clk100_cont <= 0;
       end else begin
-        clk100_count <= clk100_count + 1;
+        clk100_cont <= clk100_cont + 1;
       end
     end
   end
@@ -27,13 +27,13 @@ module divider (
   always_ff @(posedge clock1M or posedge reset) begin
     if (reset) begin
       clk_10KHz <= 0;
-      clk10_count <= 0;
+      clk10_cont <= 0;
     end else begin
-      if (clk10_count == 49) begin // 1MHz / (49+1)/2 = 10KHz
+      if (clk10_count == 49) begin
         clk_10KHz <= ~clk_10KHz;
-        clk10_count <= 0;
+        clk10_cont <= 0;
       end else begin
-        clk10_count <= clk10_count + 1;
+        clk10_cont <= clk10_cont + 1;
       end
     end
   end
