@@ -19,7 +19,6 @@ module fila(
             data_out <= 8'b0;
             len_out <= 0;
             tam_vet <= 0;
-
             for (i = 0; i < 8; i = i + 1) begin
                 vector[i] <= 8'b0;
             end
@@ -27,18 +26,15 @@ module fila(
             if (enqueue_in && tam_vet < 8) begin
                 vector[tam_vet] <= data_in;
                 tam_vet <= tam_vet + 1;
-            end 
-            else if (dequeue_in && tam_vet > 0) begin
+            end else if (dequeue_in && tam_vet > 0) begin
                 data_out <= vector[0];
 
-                // Shift manual
                 for (i = 0; i < 7; i = i + 1) begin
                     vector[i] <= vector[i+1];
                 end
                 vector[7] <= 8'b0;
                 tam_vet <= tam_vet - 1;
             end
-
             len_out <= tam_vet;
         end
     end
