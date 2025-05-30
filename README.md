@@ -3,10 +3,19 @@ Repositório para armazenar HDL para o terceiro trabalho de Sistemas Digitais
 
 # lógica
 
-## Módulo do deserializador 
-
-  input data_in, write_in, reset, clock, ack_in
-  output status_out, data_out, data_ready
+## Módulo do deserializador (Este módulo deverá funcionar a 100KH). 
+  O deserializador deve receber apenas 1 bit pelo data_in. 
+  Se o sinal write_in estiver alto:
+    o bit recebido é guardado. 
+  Quando houver 8 bits guardados:
+    data_ready deverá estar alto;
+    bits guardados deverão aparecer em data_out.
+  
+  Os valores de data_out e data_ready deverão se manter os mesmos até:
+    que o sinal ack_in fique alto.
+  
+  Enquanto o deserializador não conseguir enviar os dados:
+    deverá manter o sinal de status_out alto (está ocupado) 
 
 ### data_in:
   data_in é um sinal que é lido e adicionado a fila do deserializador, adicionado 0 ou 1 de um em um, ate completar 8
