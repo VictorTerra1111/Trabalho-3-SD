@@ -24,74 +24,158 @@ module tb_top;
     always #0.5 clock1M = ~clock1M;
 
     initial begin
-        data_in = 0;
-        write_in = 0;
-        dequeue_in = 0;
+        // Reset
+        data_in = 0; write_in = 0; dequeue_in = 0;
         reset = 1;
         #10;
         reset = 0;
 
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        // caso ruim (envia 9 bytes)
 
-        #1500;
-        dequeue_in = 1; #1; dequeue_in = 0;
-        #500;
+        // 10101010
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
 
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        // 11001100
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
 
-        #1500;
-        dequeue_in = 1; #1; dequeue_in = 0;
-        #500;
+        // 11110000
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
 
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        // 00001111
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
 
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        // 00110011
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
 
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
+        // 01010101
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
 
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
-        data_in = 0; write_in = 1; #10; write_in = 0; #10;
-        data_in = 1; write_in = 1; #10; write_in = 0; #10;
+        // 10011001
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+
+        // 11111111
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+
+        // 00000000 verifica fila travando
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+
+        #2000;
+
+        dequeue_in = 1; #20; dequeue_in = 0; #100;
+        dequeue_in = 1; #20; dequeue_in = 0; #100;
+        dequeue_in = 1; #20; dequeue_in = 0; #100;
+        dequeue_in = 1; #20; dequeue_in = 0; #100;
+
+        #1000;
+
+        // caso bom (coloca byte e retira depois)
+        // 11110000
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        dequeue_in = 1; #20; dequeue_in = 0; #100;
+
+        // 00001111
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        dequeue_in = 1; #20; dequeue_in = 0; #100;
+
+        // 10101010
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        dequeue_in = 1; #20; dequeue_in = 0; #100;
+
+        // 01010101
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        data_in=0; write_in=1; #10; write_in=0; #10;
+        data_in=1; write_in=1; #10; write_in=0; #10;
+        dequeue_in = 1; #20; dequeue_in = 0; #100;
+
         #1000;
         $finish;
     end

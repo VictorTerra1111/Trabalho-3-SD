@@ -31,7 +31,7 @@ module deserializador(
                 ENCHE_FILA: begin
                     if (tam == 7 && write_in) begin
                         vector <= {vector[6:0], data_in};
-                        tam <= 8;
+                        tam <= tam + 1;
                         state <= SEND_FILA;
                     end else if (write_in) begin
                         vector <= {vector[6:0], data_in};
@@ -58,6 +58,7 @@ module deserializador(
                         tam <= 4'b0;
                         state <= ENCHE_FILA;
                     end else begin
+                        status_out <= 1;
                         state <= H_ACK;
                     end
                 end
