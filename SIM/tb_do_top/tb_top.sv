@@ -41,7 +41,7 @@ module tb_top;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
-
+        wait(status_out == 0);
         // 11001100
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
@@ -51,7 +51,7 @@ module tb_top;
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
-
+        wait(status_out == 0);
         // 11110000
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
@@ -61,7 +61,7 @@ module tb_top;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
-
+        wait(status_out == 0);
         // 00001111
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
@@ -71,7 +71,7 @@ module tb_top;
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
-
+        wait(status_out == 0);
         // 00110011
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
@@ -81,7 +81,7 @@ module tb_top;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
-
+        wait(status_out == 0);
         // 01010101
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
@@ -91,7 +91,7 @@ module tb_top;
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
-
+        wait(status_out == 0);
         // 10011001
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
@@ -101,7 +101,7 @@ module tb_top;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
-
+        wait(status_out == 0);
         // 11111111
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
@@ -111,7 +111,7 @@ module tb_top;
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
-
+        wait(status_out == 0);
         // 00000000 verifica fila travando
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
@@ -121,7 +121,7 @@ module tb_top;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
-
+        wait(status_out == 0);
         #2000;
 
         dequeue_in = 1; #20; dequeue_in = 0; #100;
@@ -141,6 +141,7 @@ module tb_top;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
+        wait(status_out == 0);
         dequeue_in = 1; #20; dequeue_in = 0; #100;
 
         // 00001111
@@ -152,6 +153,7 @@ module tb_top;
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
+        wait(status_out == 0);
         dequeue_in = 1; #20; dequeue_in = 0; #100;
 
         // 10101010
@@ -163,6 +165,7 @@ module tb_top;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
+        wait(status_out == 0);
         dequeue_in = 1; #20; dequeue_in = 0; #100;
 
         // 01010101
@@ -174,6 +177,7 @@ module tb_top;
         data_in=1; write_in=1; #10; write_in=0; #10;
         data_in=0; write_in=1; #10; write_in=0; #10;
         data_in=1; write_in=1; #10; write_in=0; #10;
+        wait(status_out == 0);
         dequeue_in = 1; #20; dequeue_in = 0; #100;
 
         #1000;
