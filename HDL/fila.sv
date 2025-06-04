@@ -18,10 +18,10 @@ always @(posedge clk_10KHz or posedge reset) begin
         len_out <= 8'b0;  
         for (i = 0; i < 7; i = i + 1) vector[i] <= 8'b0;  
     end else begin  
-        if (enqueue_in && len_out < 8) begin  
+        if (enqueue_in && len_out < 8'b00001000) begin  
             vector[len_out] <= data_in;  
             len_out <= len_out + 1;
-        end else if (dequeue_in && len_out > 0) begin  
+        end else if (dequeue_in && len_out > 8'b0) begin  
             data_out <= vector[0];  
             for (i = 0; i < 7; i = i + 1)  
                 vector[i] <= vector[i+1];  
