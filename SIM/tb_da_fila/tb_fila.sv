@@ -9,7 +9,7 @@ module tb_fila;
     logic clk_10KHz;
 
     logic [7:0] data_out;
-    logic [2:0] len_out;
+    logic [7:0] len_out;
 
     fila dut (
         .data_in(data_in),
