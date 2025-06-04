@@ -14,7 +14,8 @@ module fila(
     logic dequeue_selecionado;
 
     integer i;
-    
+    assign len_out = tam_vet;
+
     always @(posedge clk_10KHz or posedge reset) begin
         if (reset) begin
             data_out <= 8'b0;
@@ -40,7 +41,7 @@ module fila(
                 dequeue_selecionado <= 1'b0;
             end
 
-            len_out <= tam_vet;
+           // len_out <= tam_vet;
         end
     end
 endmodule
