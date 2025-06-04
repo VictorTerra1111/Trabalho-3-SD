@@ -14,7 +14,6 @@ module top(
     logic data_ready_des;
     logic [7:0] len_out;
     logic [7:0] data_out_des;
-    logic ack_flag;
 
     deserializador des(
         .reset(reset),
@@ -44,14 +43,7 @@ module top(
         .clk_100KHz(clk_100KHz)
     );
 
-    always @(posedge clk_10KHz or posedge reset) begin
-         if (reset) begin
-            enqueue_in <= 0;
-            ack_in <= 0;
-            ack_flag <= 0;
-        end else begin
-        end
-    end
+    assign ack_in = (len_out >= 8);
 /*
     always @(posedge clk_10KHz or posedge reset) begin
         if (reset) begin
