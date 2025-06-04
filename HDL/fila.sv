@@ -19,7 +19,6 @@ always @(posedge clk_10KHz or posedge reset) begin
         data_out <= 8'b0;  
         len_out <= 8'b0;  
         len_out <= 8'b0;  
-        dequeue_selecionado <= 1'b0;  
         vector[i] <= 8'b0;  
     end else begin  
         if (enqueue_in && len_out < 8) begin  
@@ -27,7 +26,7 @@ always @(posedge clk_10KHz or posedge reset) begin
             len_out <= len_out + 1;
         end  
 
-        if (dequeue_in && len_out > 0 && !dequeue_selecionado) begin  
+        if (dequeue_in && len_out > 0) begin  
             data_out <= vector[0];  
             for (i = 0; i < 7; i = i + 1)  
                 vector[i] <= vector[i+1];  
