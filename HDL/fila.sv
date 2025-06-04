@@ -39,8 +39,9 @@ module fila(
                 tam_vet <= tam_vet - 1;
                 dequeue_selecionado <= 1'b0;
             end
+
             
-           len_out <= tam_vet; // ALTERAR
+           len_out <= tam_vet + 1; // ALTERAR
         end
     end
 endmodule
