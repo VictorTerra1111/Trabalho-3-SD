@@ -58,12 +58,12 @@ module deserializador(
                     data_out <= vector;
                     if (!ack_in) begin
                         data_ready <= 0;
-                        data_out <= 8'b0;
                         status_out <= 0;
                         vector <= 8'b0;
                         tam <= 4'b0;
                         state <= ENCHE_FILA;
                     end else begin
+                        data_out <= 8'b0; // VERIFICAR
                         state <= H_ACK;
                     end
                 end
