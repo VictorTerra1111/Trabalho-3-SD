@@ -21,40 +21,129 @@ module tb_top;
     );
 
     initial clock1M = 0;
-    always #0.5 clock1M = ~clock1M;
+    always #0.5 clock1M = ~clock1M;  // 1 MHz clock
 
     initial begin
-        data_in = 0; 
-        write_in = 0; 
+        reset = 1; data_in = 0; write_in = 0; dequeue_in = 0;
+        #5;
+        reset = 0;
+        #50; // Aguarda clocks derivados estabilizarem
+
+        // Inserir 4 bytes (bit a bit) manualmente:
+
+        // Byte 1: 10101010
+        write_in = 1;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        write_in = 0; #20;
+
+        // Byte 2: 11001100
+        write_in = 1;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        write_in = 0; #20;
+
+        // Byte 3: 11110000
+        write_in = 1;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        write_in = 0; #20;
+
+        // Byte 4: 00001111
+        write_in = 1;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        write_in = 0; #50;
+
+        // Retirar 4 bytes
+        dequeue_in = 1; #100;
+        dequeue_in = 0; #20;
+
+        dequeue_in = 1; #100;
+        dequeue_in = 0; #20;
+
+        dequeue_in = 1; #100;
+        dequeue_in = 0; #20;
+
+        dequeue_in = 1; #100;
+        dequeue_in = 0; #50;
+
+        // Inserir 8 bytes:
+
+        // Byte 5: 00110011
+        write_in = 1;
+        data_in = 0; #10; data_in = 0; #10;
+        data_in = 1; #10; data_in = 1; #10;
+        data_in = 0; #10; data_in = 0; #10;
+        data_in = 1; #10; data_in = 1; #10;
+        write_in = 0; #20;
+
+        // Byte 6: 01010101
+        write_in = 1;
+        data_in = 0; #10; data_in = 1; #10;
+        data_in = 0; #10; data_in = 1; #10;
+        data_in = 0; #10; data_in = 1; #10;
+        data_in = 0; #10; data_in = 1; #10;
+        write_in = 0; #20;
+
+        // Byte 7: 10011001
+        write_in = 1;
+        data_in = 1; #10; data_in = 0; #10;
+        data_in = 0; #10; data_in = 1; #10;
+        data_in = 1; #10; data_in = 0; #10;
+        data_in = 0; #10; data_in = 1; #10;
+        write_in = 0; #20;
+
+        // Byte 8: 11111111
+        write_in = 1;
+        repeat (8) begin
+            data_in = 1; #10;
+        end
+        write_in = 0; #20;
+
+        // Byte 9: 00000000 — deve ser ignorado (FIFO cheia)
+        write_in = 1;
+        repeat (8) begin
+            data_in = 0; #10;
+        end
+        write_in = 0; #50;
+
+        // Retirar 8 bytes
+        repeat (8) begin
+            dequeue_in = 1; #100;
+            dequeue_in = 0; #20;
+        end
+
+        // Tentar retirar um 9º byte — FIFO vazia
+        dequeue_in = 1; #100;
         dequeue_in = 0;
-        reset = 0; #100;
-        reset = 1; #100;
-        reset = 0; #100;
-        
-        // 10101010
-        write_in=1;
-        data_in=1; #100;
-        data_in=0; #100;
-        data_in=1; #100;
-        data_in=0; #100;
-        data_in=1; #100;
-        data_in=0; #100;
-        data_in=1; #100;
-        data_in=0; #100;
-        write_in=0; #100;
-        
-        //wait(status_out == 0);
-        
-        // 11001100
-        // 11110000
-        // 00001111
-        // 00110011
-        // 01010101
-        // 10011001
-        // 11111111
-        // 00000000 caso ruim
-        dequeue_in = 1; #100; 
-        dequeue_in = 0; #100;
+
+        #50;
         $finish;
     end
+
 endmodule
