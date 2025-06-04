@@ -50,8 +50,10 @@ module top(
         end else begin
             if (data_ready && len_out < 8) begin
                 ack_in <= 1;
+                enqueue_in <= 1;
             end else begin
                 ack_in <= 0;
+                enqueue_in <= 0;
             end
         end
     end
