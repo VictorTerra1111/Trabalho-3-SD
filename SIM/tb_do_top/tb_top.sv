@@ -34,166 +34,163 @@ module tb_top;
 
         // Byte 1: 10101010
         write_in = 1;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        write_in = 0; #20;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        write_in = 0; #50;
 
         // Byte 2: 11001100
         write_in = 1;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        write_in = 0; #20;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        write_in = 0; #50;
 
         // Byte 3: 11110000
         write_in = 1;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        write_in = 0; #20;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        write_in = 0; #50;
 
         // Byte 4: 00001111
         write_in = 1;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 1; #10;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 1; #15;
         write_in = 0; #50;
 
-        // Retirar 4 bytes
-        dequeue_in = 1; #100;
-        dequeue_in = 0; #20;
-
-        dequeue_in = 1; #100;
-        dequeue_in = 0; #20;
-
-        dequeue_in = 1; #100;
-        dequeue_in = 0; #20;
-
-        dequeue_in = 1; #100;
+        // tira 4 bytes
+        dequeue_in = 1; #15;
         dequeue_in = 0; #50;
 
-        // Inserir 8 bytes:
+        dequeue_in = 1; #15;
+        dequeue_in = 0; #50;
+
+        dequeue_in = 1; #15;
+        dequeue_in = 0; #50;
+
+        dequeue_in = 1; #15;
+        dequeue_in = 0; #50;
         
         // Byte 1: 10101010
         write_in = 1;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        write_in = 0; #20;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        write_in = 0; #50;
 
         // Byte 2: 11001100
         write_in = 1;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        write_in = 0; #20;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        write_in = 0; #50;
 
         // Byte 3: 11110000
         write_in = 1;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        write_in = 0; #20;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        write_in = 0; #50;
 
         // Byte 4: 00001111
         write_in = 1;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        data_in = 1; #10;
-        write_in = 0; #20;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        data_in = 1; #15;
+        write_in = 0; #50;
         
         // Byte 5: 00110011
         write_in = 1;
-        data_in = 0; #10; data_in = 0; #10;
-        data_in = 1; #10; data_in = 1; #10;
-        data_in = 0; #10; data_in = 0; #10;
-        data_in = 1; #10; data_in = 1; #10;
-        write_in = 0; #20;
+        data_in = 0; #15; data_in = 0; #15;
+        data_in = 1; #15; data_in = 1; #15;
+        data_in = 0; #15; data_in = 0; #15;
+        data_in = 1; #15; data_in = 1; #15;
+        write_in = 0; #50;
 
         // Byte 6: 01010101
         write_in = 1;
-        data_in = 0; #10; data_in = 1; #10;
-        data_in = 0; #10; data_in = 1; #10;
-        data_in = 0; #10; data_in = 1; #10;
-        data_in = 0; #10; data_in = 1; #10;
-        write_in = 0; #20;
+        data_in = 0; #15; data_in = 1; #15;
+        data_in = 0; #15; data_in = 1; #15;
+        data_in = 0; #15; data_in = 1; #15;
+        data_in = 0; #15; data_in = 1; #15;
+        write_in = 0; #50;
 
         // Byte 7: 10011001
         write_in = 1;
-        data_in = 1; #10; data_in = 0; #10;
-        data_in = 0; #10; data_in = 1; #10;
-        data_in = 1; #10; data_in = 0; #10;
-        data_in = 0; #10; data_in = 1; #10;
-        write_in = 0; #20;
+        data_in = 1; #15; data_in = 0; #15;
+        data_in = 0; #15; data_in = 1; #15;
+        data_in = 1; #15; data_in = 0; #15;
+        data_in = 0; #15; data_in = 1; #15;
+        write_in = 0; #50;
 
         // Byte 8: 11111111
         write_in = 1;
-        data_in = 1; #10; data_in = 1; #10;
-        data_in = 1; #10; data_in = 1; #10;
-        data_in = 1; #10; data_in = 1; #10;
-        data_in = 1; #10; data_in = 1; #10;
-        write_in = 0; #20;
+        data_in = 1; #15; data_in = 1; #15;
+        data_in = 1; #15; data_in = 1; #15;
+        data_in = 1; #15; data_in = 1; #15;
+        data_in = 1; #15; data_in = 1; #15;
+        write_in = 0; #50;
 
-        // Byte 9: 00000000 — deve ser ignorado (FIFO cheia)
+        // Byte 9: 00000000 caso ruim
         write_in = 1;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        data_in = 0; #10;
-        write_in = 0; #20;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        data_in = 0; #15;
+        write_in = 0; #50;
 
         // Retirar 8 bytes
         repeat (8) begin
             dequeue_in = 1; #100;
-            dequeue_in = 0; #20;
+            dequeue_in = 0; #50;
         end
-
-        // Tentar retirar um 9º byte — FIFO vazia
+        
         dequeue_in = 1; #100;
         dequeue_in = 0;
 
