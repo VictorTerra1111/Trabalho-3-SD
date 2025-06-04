@@ -6,7 +6,7 @@
 2. Deserializador (100 KHz)
 3. Fila (10 KHz)
 ---
-##⛏️ Deserializador (100 KHz)
+## ⛏️ Deserializador (100 KHz)
 
 O módulo deserializador recebe dados bit a bit através do sinal data_in. Quando o sinal write_in está alto, o bit presente em data_in é armazenado internamente. Após oito bits, os dados são agrupados e disponibilizados em data_out, com o sinal data_ready sendo ativado para indicar que os dados estão prontos.
 
