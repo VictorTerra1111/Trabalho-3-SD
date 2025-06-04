@@ -24,7 +24,7 @@ module fila(
 
     always @(posedge clk_10KHz or posedge reset) begin
         if (reset) begin
-            state <= wait;
+            state <= wait_s;
             tam_vet <= 8'd0;
             data_out <= 8'd0;
             len_out <= 8'd0;
@@ -62,7 +62,7 @@ module fila(
 
     always_comb begin
         case (state)
-            wait: begin
+            wait_s: begin
                 if (dequeue_in && tam_vet > 0)
                     next_state = dequeue;
                 else
