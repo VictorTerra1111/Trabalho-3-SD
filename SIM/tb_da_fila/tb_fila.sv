@@ -39,9 +39,11 @@ module tb_fila;
         data_in = 8'h66; enqueue_in = 1; #50; enqueue_in = 0;
         data_in = 8'h77; enqueue_in = 1; #50; enqueue_in = 0;
         data_in = 8'h88; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h99; enqueue_in = 1; #50; enqueue_in = 0;
+        data_in = 8'h99; enqueue_in = 1; #50;
 
-        #1000;
+        #100;
+        enqueue_in = 0;
+        #50;
         dequeue_in = 1; #500; dequeue_in = 0;
         dequeue_in = 1; #500; dequeue_in = 0;
         dequeue_in = 1; #500; dequeue_in = 0;
