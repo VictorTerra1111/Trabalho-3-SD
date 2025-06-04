@@ -63,7 +63,7 @@ module deserializador(
                         tam <= 4'b0;
                         state <= ENCHE_FILA;
                     end else begin
-                        data_out <= 8'b0; // VERIFICAR
+                        data_out <= 8'b0;
                         state <= H_ACK;
                     end
                 end
