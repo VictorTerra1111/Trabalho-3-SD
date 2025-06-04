@@ -7,7 +7,6 @@ module tb_fila;
     logic dequeue_in;
     logic reset;
     logic clk_10KHz;
-    logic [7:0] vector_out [7:0];
     logic [7:0] data_out;
     logic [7:0] len_out;
 
@@ -19,7 +18,6 @@ module tb_fila;
         .clk_10KHz(clk_10KHz),
         .data_out(data_out),
         .len_out(len_out),
-        .vector_out(vector_out)
     );
 
     initial clk_10KHz = 0;
