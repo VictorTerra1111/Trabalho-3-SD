@@ -66,12 +66,12 @@ module fila(
                 if (dequeue_in && tam_vet > 0)
                     next_state = dequeue;
                 else
-                    next_state = wait;
+                    next_state = wait_s;
             end
             dequeue: next_state = at_fila;
             at_fila: next_state = enviado;
-            enviado: next_state = wait;
-            default: next_state = wait;
+            enviado: next_state = wait_s;
+            default: next_state = wait_s;
         endcase
     end
 
