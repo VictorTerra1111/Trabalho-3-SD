@@ -21,15 +21,16 @@ module tb_top;
     );
 
     initial clock1M = 0;
-    always #0.5 clock1M = ~clock1M;  // 1 MHz clock
+    always #0.5 clock1M = ~clock1M;
 
     initial begin
-        reset = 1; data_in = 0; write_in = 0; dequeue_in = 0;
+        reset = 1; 
+        data_in = 0; 
+        write_in = 0; 
+        dequeue_in = 0;
         #5;
         reset = 0;
-        #50; // Aguarda clocks derivados estabilizarem
-
-        // Inserir 4 bytes (bit a bit) manualmente:
+        #50; 
 
         // Byte 1: 10101010
         write_in = 1;
@@ -93,7 +94,55 @@ module tb_top;
         dequeue_in = 0; #50;
 
         // Inserir 8 bytes:
+        
+        // Byte 1: 10101010
+        write_in = 1;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        write_in = 0; #20;
 
+        // Byte 2: 11001100
+        write_in = 1;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        write_in = 0; #20;
+
+        // Byte 3: 11110000
+        write_in = 1;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        write_in = 0; #20;
+
+        // Byte 4: 00001111
+        write_in = 1;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 1; #10;
+        write_in = 0; #20;
+        
         // Byte 5: 00110011
         write_in = 1;
         data_in = 0; #10; data_in = 0; #10;
@@ -120,17 +169,23 @@ module tb_top;
 
         // Byte 8: 11111111
         write_in = 1;
-        repeat (8) begin
-            data_in = 1; #10;
-        end
+        data_in = 1; #10; data_in = 1; #10;
+        data_in = 1; #10; data_in = 1; #10;
+        data_in = 1; #10; data_in = 1; #10;
+        data_in = 1; #10; data_in = 1; #10;
         write_in = 0; #20;
 
         // Byte 9: 00000000 — deve ser ignorado (FIFO cheia)
         write_in = 1;
-        repeat (8) begin
-            data_in = 0; #10;
-        end
-        write_in = 0; #50;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        write_in = 0; #20;
 
         // Retirar 8 bytes
         repeat (8) begin
@@ -145,5 +200,4 @@ module tb_top;
         #50;
         $finish;
     end
-
 endmodule
