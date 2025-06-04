@@ -57,7 +57,7 @@ module top(
             end else begin
                 enqueue_in <= 0;
                 ack_in <= 0;
-                if (!data_ready_des) ack_flag <= 0;
+                if (!data_ready_des) ack_flag <= 0; // ACK_FLAG ATUALIZA E VERIFICA O ANTIGO NO MESMO CICLO
                 if (ack_flag && (!data_ready_des || len_out >= 8)) begin
                      ack_in <= 0;
                  end
