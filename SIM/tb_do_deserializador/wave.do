@@ -2,7 +2,7 @@ onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate tb_deserializador/data_in
 add wave -noupdate tb_deserializador/reset
-add wave -noupdate tb_deserializador/clock_100KHz
+add wave -noupdate tb_deserializador/clk_100KHz
 add wave -noupdate tb_deserializador/ack_in
 add wave -noupdate tb_deserializador/write_in
 add wave -noupdate tb_deserializador/status_out

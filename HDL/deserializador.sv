@@ -1,3 +1,4 @@
+
 module deserializador(
     input logic data_in,
 
@@ -29,6 +30,8 @@ module deserializador(
         end else begin
             case (state)
                 ENCHE_FILA: begin
+                    status_out <= 1'b0;
+                    data_ready <= 1'b0;
                     if (tam == 7 && write_in) begin
                         vector <= {vector[6:0], data_in};
                         tam <= tam + 1;
@@ -50,6 +53,9 @@ module deserializador(
                     end
                 end
                 H_ACK: begin
+                    status_out <= 1;
+                    data_ready <= 1;
+                    data_out <= vector;
                     if (!ack_in) begin
                         data_ready <= 0;
                         data_out <= 8'b0;
@@ -58,11 +64,12 @@ module deserializador(
                         tam <= 4'b0;
                         state <= ENCHE_FILA;
                     end else begin
-                        status_out <= 1;
                         state <= H_ACK;
                     end
                 end
+                default: state <= ENCHE_FILA;
             endcase
         end 
     end 
 endmodule
+

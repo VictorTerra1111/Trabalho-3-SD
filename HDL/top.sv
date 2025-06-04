@@ -2,39 +2,39 @@ module top(
     input logic clock1M,
     input logic reset,
 
-    input logic data_in, 
-    input logic write_in, 
+    input logic data_in,
+    input logic write_in,
     input logic dequeue_in,
 
     output logic [7:0] data_out,
-    output logic status_out 
+    output logic status_out
 );
 
     logic enqueue_in, ack_in, clk_10KHz, clk_100KHz;
-    logic data_ready_des; 
-    logic [3:0] len_out;
+    logic data_ready_des;
+    logic [7:0] len_out;
     logic [7:0] data_out_des;
     logic ack_flag;
 
     deserializador des(
         .reset(reset),
         .clk_100KHz(clk_100KHz),
-        .data_in(data_in),               
-        .write_in(write_in),           
-        .status_out(status_out),        
-        .ack_in(ack_in),                
-        .data_out(data_out_des),            
-        .data_ready(data_ready_des)        
-    );  
+        .data_in(data_in),
+        .write_in(write_in),
+        .status_out(status_out),
+        .ack_in(ack_in),
+        .data_out(data_out_des),
+        .data_ready(data_ready_des)
+    );
 
     fila fil(
         .reset(reset),
         .clk_10KHz(clk_10KHz),
-        .data_in(data_out_des),          
-        .len_out(len_out),                
-        .enqueue_in(enqueue_in),       
-        .data_out(data_out),                
-        .dequeue_in(dequeue_in)           
+        .data_in(data_out_des),
+        .len_out(len_out),
+        .enqueue_in(enqueue_in),
+        .data_out(data_out),
+        .dequeue_in(dequeue_in)
     );
 
     clock_divisor divisor(
@@ -58,6 +58,9 @@ module top(
                 enqueue_in <= 0;
                 ack_in <= 0;
                 if (!data_ready_des) ack_flag <= 0;
+                if (ack_flag && (!data_ready_des || len_out >= 8)) begin
+                     ack_in <= 0;
+                 end
             end
         end
     end
