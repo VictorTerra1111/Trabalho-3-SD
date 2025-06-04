@@ -11,7 +11,6 @@ output logic [7:0] len_out
 );
 
 logic [7:0] vector [7:0];  
-logic dequeue_selecionado;  
 
 integer i;  
 
