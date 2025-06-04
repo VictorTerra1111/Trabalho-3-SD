@@ -5,6 +5,7 @@
 1. TOP (1 MHz)
 2. Deserializador (100 KHz)
 3. Fila (10 KHz)
+4. Divisor de clock
 ---
 ## ⛏️ Deserializador (100 KHz)
 
@@ -49,8 +50,11 @@ len_out (8 bits): Indica o número de posições atualmente ocupadas na fila.
 
 ## 🔝 TOP (1 MHz)
 
-O módulo TOP é responsável por integrar os módulos `deserializador` e `fila`. Ele recebe um clock de 1 MHz e, por meio de outro módulo, gera dois novos sinais de clock:
+O módulo TOP é responsável por integrar os módulos `deserializador` e `fila`. Ele recebe um clock de 1 MHz e, por meio de outro módulo, gera dois novos sinais de clock.
+No módulo TOP também ocorre a transformação do sinal len_out em ack_in.
 
+## ⏰ Divisor de Clock 
+
+Neste módulo acontece a separação do clock de 1MHz (um mega):
 - 100 KHz para o deserializador
 - 10 KHz para a fila
-No módulo TOP também ocorre a transformação do sinal len_out em ack_in.
