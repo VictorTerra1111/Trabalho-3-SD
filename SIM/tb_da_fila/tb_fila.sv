@@ -41,15 +41,16 @@ module tb_fila;
         data_in = 8'h88; enqueue_in = 1; #50; enqueue_in = 0;
         data_in = 8'h99; enqueue_in = 1; #50; enqueue_in = 0;
 
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
+        #1000;
+        dequeue_in = 1; #500; dequeue_in = 0;
+        dequeue_in = 1; #500; dequeue_in = 0;
+        dequeue_in = 1; #500; dequeue_in = 0;
+        dequeue_in = 1; #500; dequeue_in = 0;
+        dequeue_in = 1; #500; dequeue_in = 0;
+        dequeue_in = 1; #500; dequeue_in = 0;
+        dequeue_in = 1; #500; dequeue_in = 0;
+        dequeue_in = 1; #500; dequeue_in = 0;
+        dequeue_in = 1; #500; dequeue_in = 0;
 
         #100;
         $finish;
