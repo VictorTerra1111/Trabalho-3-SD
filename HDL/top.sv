@@ -45,6 +45,15 @@ module top(
     );
 
     always @(posedge clk_10KHz or posedge reset) begin
+         if (reset) begin
+            enqueue_in <= 0;
+            ack_in <= 0;
+            ack_flag <= 0;
+        end else begin
+        end
+    end
+/*
+    always @(posedge clk_10KHz or posedge reset) begin
         if (reset) begin
             enqueue_in <= 0;
             ack_in <= 0;
@@ -64,4 +73,5 @@ module top(
             end
         end
     end
+*/
 endmodule
