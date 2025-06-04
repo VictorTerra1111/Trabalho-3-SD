@@ -31,10 +31,10 @@ module fila(
 
             if (dequeue_in && tam_vet > 0 && !dequeue_selecionado) begin
                 dequeue_selecionado <= 1'b1;
+                data_out <= vector[0];
             end
 
             if (dequeue_selecionado) begin
-                data_out <= vector[0];
                 for (i = 0; i < 7; i = i + 1)
                     vector[i] <= vector[i+1];
                 vector[7] <= 8'b0;
