@@ -1,49 +1,48 @@
-# Trabalho-3-SD
-Repositório para armazenar HDL para o terceiro trabalho de Sistemas Digitais
+### Trabalho 3 de Sistemas Digitais: Múltiplos Domínios de Relógio
 
-# lógica
+# 💡 Módulos
 
-## Módulo do deserializador (Este módulo deverá funcionar a 100KH). 
-  O deserializador deve receber apenas 1 bit pelo data_in. 
-  Se o sinal write_in estiver alto:
-    o bit recebido é guardado. 
-  Quando houver 8 bits guardados:
-    data_ready deverá estar alto;
-    bits guardados deverão aparecer em data_out.
-  
-  Os valores de data_out e data_ready deverão se manter os mesmos até:
-    que o sinal ack_in fique alto.
-  
-  Enquanto o deserializador não conseguir enviar os dados:
-    deverá manter o sinal de status_out alto (está ocupado) 
+1. TOP (1 MHz)
+2. Deserializador (100 KHz)
+3. Fila (10 KHz)
+---
+##⛏️ Deserializador (100 KHz)
 
-### data_in:
-  data_in é um sinal que é lido e adicionado a fila do deserializador, adicionado 0 ou 1 de um em um, ate completar 8
+O módulo deserializador recebe dados bit a bit através do sinal data_in. Quando o sinal write_in está alto, o bit presente em data_in é armazenado internamente. Após oito bits, os dados são agrupados e disponibilizados em data_out, com o sinal data_ready sendo ativado para indicar que os dados estão prontos.
 
-### write_in: 
-  write_in é o sinal que determina se o deserializador le ou não o sinal do data_in para escrita
+Enquanto os dados não forem reconhecidos como recebidos (via ack_in), tanto data_ready quanto data_out permanecem inalterados. Enquanto o módulo está aguardando o envio dos 8 bits agrupados, o sinal status_out estará ativo para indicar que está ocupado e não pode receber mais dados.
 
-### reset:
-  É um reset, limpa todo  o deserializador
+# Entradas:
+data_in (1 bit): Entrada serial de dados, recebida bit a bit.
 
-### Clock:
-  É o clock, que neste projeto opera em uma velocidade superioro ao do modulo da fila
+write_in (1 bit): Habilita a escrita do bit atual em data_in.
 
-### ack_in
-  Possívelmente lê o len_out do modulo da FILA, caso len(tamanho da fila no modulo for 0) significa que pode receber, ou seja, o ack vai estar em 1
+ack_in (1 bit): Indica que o próximo módulo (Fila) pode receber os dados (derivado de len_out da Fila).
 
-### status_out
-  Sinal de saida que indica se o deserializador pode receber dados ou não
+# Saídas:
+data_out (8 bits): Saída dos dados agrupados.
 
-### data_out:
-  data_out é o vetor de 8 bits que vai do deserializador para o FILA, quando permitido
+data_ready (1 bit): Indica que data_out contém dados e prontos para serem lidos.
 
-### data_ready:
-  Sinal que fica alto quando o vector estiver com 8 bits
+status_out (1 bit): Indica que o deserializador está ocupado e não pode receber mais dados.
 
-## Módulo da fila (Este módulo deverá funcionar a 10KH). 
-  A fila possui um tamanho fixo de 8 espaços, cada espaço com 8 bits. 
-  O sinal len_out informa o número de espaços utilizados. 
-  Para colocar um elemento na fila, o elemento deverá aparecer no sinal data_in e o sinal enqueue_in deverá estar alto.
-  Para remover um elemento da fila, o sinal dequeue_in deve ser levantado e, no ciclo
-subsequente, o dado removido deverá aparecer no sinal data_out. 
+---
+
+## 👥 Fila (10 KHz)
+
+A fila possui 8 posições fixas, cada uma com 8 bits (total de 8 bytes). Ela funciona como uma estrutura FIFO (First-In, First-Out), permitindo que dados sejam inseridos e removidos de uma ponta e removidos da outra.
+Para inserir um dado, ele deve estar presente no sinal data_in e o sinal enqueue_in deve estar alto. Para remover um dado, o sinal dequeue_in deve ser ativado. No ciclo seguinte, o dado removido aparecerá em data_out.
+ 
+# Entradas:
+data_in (8 bits): Dados a serem inseridos na fila.
+
+enqueue_in (1 bit): Sinal para inserir dados na fila.
+
+dequeue_in (1 bit): Sinal para remover dados da fila.
+
+
+# Saídas:
+
+data_out (8 bits): Dados removidos da fila.
+
+len_out (3 bits): Indica o número de posições atualmente ocupadas na fila.
