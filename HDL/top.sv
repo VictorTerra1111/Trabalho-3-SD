@@ -14,7 +14,9 @@ module top(
     logic data_ready;
     logic [7:0] len_out;
     logic [7:0] data_out_des;
-        
+    
+    logic data_ready_10_prev, data_ready_10; // teste
+    
     deserializador des(
         .reset(reset),
         .clk_100KHz(clk_100KHz),
@@ -47,8 +49,13 @@ module top(
         if (reset) begin
             enqueue_in <= 0;
             ack_in <= 0;
+            data_ready_10 <= 0;
+            data_ready_10_prev <= 0;
         end else begin
-            if (data_ready && len_out < 8) begin
+            data_ready_10 <= data_ready;
+            data_ready_10_prev <= data_ready;
+
+            if(data_ready_10 && !data_ready_10_prev && len_out < 8) begin
                 ack_in <= 1;
                 enqueue_in <= 1;
             end else begin
