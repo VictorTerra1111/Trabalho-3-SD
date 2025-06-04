@@ -26,7 +26,7 @@ module fila(
         end else begin
             if (enqueue_in && tam_vet < 8) begin
                 vector[tam_vet] <= data_in;
-                tam_vet <= tam_vet + 1;
+                tam_vet <= tam_vet + 1; // TAMANHO ESTA SENDO ATUALIZADO MAS NAO APARECE O NOVO NO LEN_OUT
             end
 
             if (dequeue_in && tam_vet > 0 && !dequeue_selecionado) begin
