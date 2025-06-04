@@ -17,7 +17,7 @@ module tb_fila;
         .reset(reset),
         .clk_10KHz(clk_10KHz),
         .data_out(data_out),
-        .len_out(len_out),
+        .len_out(len_out)
     );
 
     initial clk_10KHz = 0;
