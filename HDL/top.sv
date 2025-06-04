@@ -49,19 +49,15 @@ module top(
         if (reset) begin
             enqueue_in <= 0;
             ack_in <= 0;
-            data_ready_10 <= 0;
-            data_ready_10_prev <= 0;
         end else begin
-            data_ready_10 <= data_ready;
-            data_ready_10_prev <= data_ready;
-
-            if(data_ready_10 && !data_ready_10_prev && len_out < 8) begin
-                ack_in <= 1;
+            if (data_ready && len_out < 8) begin
                 enqueue_in <= 1;
+                ack_in <= 1;
             end else begin
-                ack_in <= 0;
                 enqueue_in <= 0;
+                ack_in <= 0;
             end
         end
     end
+
 endmodule
