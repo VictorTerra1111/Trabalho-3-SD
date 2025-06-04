@@ -31,18 +31,17 @@ module tb_fila;
         #100;
         reset = 0;
 
-        data_in = 8'h11; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h22; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h33; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h44; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h55; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h66; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h77; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h88; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h99; enqueue_in = 1; #50;
-
-        #100;
+        data_in = 8'h11; enqueue_in = 1; #50; 
+        data_in = 8'h22; #50;
+        data_in = 8'h33; #50; 
+        data_in = 8'h44; #50; 
+        data_in = 8'h55; #50; 
+        data_in = 8'h66; #50; 
+        data_in = 8'h77; #50; 
+        data_in = 8'h88; #50;
+        data_in = 8'h99; #50;
         enqueue_in = 0;
+        #100;
         #50;
         dequeue_in = 1; #500; dequeue_in = 0;
         dequeue_in = 1; #500; dequeue_in = 0;
