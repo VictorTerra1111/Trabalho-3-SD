@@ -14,9 +14,7 @@ module top(
     logic data_ready;
     logic [7:0] len_out;
     logic [7:0] data_out_des;
-    
-    logic ack_flag;
-    
+        
     deserializador des(
         .reset(reset),
         .clk_100KHz(clk_100KHz),
@@ -54,7 +52,6 @@ module top(
                 ack_in <= 1;
             end else begin
                 ack_in <= 0;
-                end
             end
         end
     end
