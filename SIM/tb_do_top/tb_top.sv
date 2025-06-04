@@ -24,26 +24,27 @@ module tb_top;
     always #0.5 clock1M = ~clock1M;
 
     initial begin
-        // Reset
-        data_in = 0; write_in = 0; dequeue_in = 0;
+        data_in = 0; 
+        write_in = 0; 
+        dequeue_in = 0;
         reset = 1;
-        #10;
+        #100;
         reset = 0;
 
         // caso ruim (envia 9 bytes)
 
         // 10101010
-        wait(status_out == 0); data_in=1; write_in=1; #10; write_in=0; #10;
-        wait(status_out == 0); data_in=0; write_in=1; #10; write_in=0; #10;
-        wait(status_out == 0); data_in=1; write_in=1; #10; write_in=0; #10;
-        wait(status_out == 0); data_in=0; write_in=1; #10; write_in=0; #10;
-        wait(status_out == 0); data_in=1; write_in=1; #10; write_in=0; #10;
-        wait(status_out == 0); data_in=0; write_in=1; #10; write_in=0; #10;
-        wait(status_out == 0); data_in=1; write_in=1; #10; write_in=0; #10;
-        wait(status_out == 0); data_in=0; write_in=1; #10; write_in=0; #10;
+        wait(status_out == 0); data_in=1; write_in=1; #100; write_in=0; #100;
+        wait(status_out == 0); data_in=0; write_in=1; #100; write_in=0; #100;
+        wait(status_out == 0); data_in=1; write_in=1; #100; write_in=0; #100;
+        wait(status_out == 0); data_in=0; write_in=1; #100; write_in=0; #100;
+        wait(status_out == 0); data_in=1; write_in=1; #100; write_in=0; #100;
+        wait(status_out == 0); data_in=0; write_in=1; #100; write_in=0; #100;
+        wait(status_out == 0); data_in=1; write_in=1; #100; write_in=0; #100;
+        wait(status_out == 0); data_in=0; write_in=1; #100; write_in=0; #100;
         wait(status_out == 0);
         // 11001100
-        wait(status_out == 0); data_in=1; write_in=1; #10; write_in=0; #10;
+        wait(status_out == 0); data_in=1; write_in=1; #100; write_in=0; #10;
         wait(status_out == 0); data_in=1; write_in=1; #10; write_in=0; #10;
         wait(status_out == 0); data_in=0; write_in=1; #10; write_in=0; #10;
         wait(status_out == 0); data_in=0; write_in=1; #10; write_in=0; #10;
