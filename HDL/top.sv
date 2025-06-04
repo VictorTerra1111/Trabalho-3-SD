@@ -45,24 +45,15 @@ module top(
         .clk_100KHz(clk_100KHz)
     );
 
-    // assign ack_in = (len_out >= 8); // talvez funcione
     always @(posedge clk_10KHz or posedge reset) begin
         if (reset) begin
             enqueue_in <= 0;
             ack_in <= 0;
-            ack_flag <= 0;
         end else begin
-            if (data_ready && len_out < 8 && !ack_flag) begin
-                enqueue_in <= 1;
+            if (data_ready && len_out < 8) begin
                 ack_in <= 1;
-                ack_flag <= 1;
             end else begin
-                enqueue_in <= 0;
                 ack_in <= 0;
-                if (!data_ready) begin 
-                    ack_flag <= 0;
-                end else if (ack_flag && (!data_ready || len_out >= 8)) begin
-                     ack_in <= 0;
                 end
             end
         end
