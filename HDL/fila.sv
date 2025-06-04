@@ -5,7 +5,7 @@ module fila(
     input logic reset,
     input logic clk_10KHz,
 
-    output logic [7:0] vector_out [7:0]; // TIRA DEPOIS
+    output logic [7:0] vector_out [7:0], // TIRA DEPOIS
     output logic [7:0] data_out,
     output logic [7:0] len_out
 );
