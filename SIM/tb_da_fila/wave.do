@@ -7,7 +7,7 @@ add wave -noupdate tb_fila/enqueue_in
 add wave -noupdate tb_fila/dequeue_in
 add wave -noupdate tb_fila/data_out
 add wave -noupdate tb_fila/len_out
-add wave -noupdate tb_fila/vector
+add wave -noupdate tb_fila/vector_out
 
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {377768 ns} 0}
