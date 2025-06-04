@@ -1,4 +1,4 @@
-### Trabalho 3 de Sistemas Digitais: Múltiplos Domínios de Relógio
+# Trabalho 3 de Sistemas Digitais: Múltiplos Domínios de Relógio
 
 # 💡 Módulos
 
@@ -30,7 +30,7 @@ status_out (1 bit): Indica que o deserializador está ocupado e não pode recebe
 
 ## 👥 Fila (10 KHz)
 
-A fila possui 8 posições fixas, cada uma com 8 bits (total de 8 bytes). Ela funciona como uma estrutura FIFO (First-In, First-Out), permitindo que dados sejam inseridos e removidos de uma ponta e removidos da outra.
+A fila possui 8 posições fixas, cada uma com 8 bits (total de 8 bytes). Ela funciona como uma estrutura FIFO (First-In, First-Out), permitindo que dados sejam inseridos de uma ponta e removidos da outra.
 Para inserir um dado, ele deve estar presente no sinal data_in e o sinal enqueue_in deve estar alto. Para remover um dado, o sinal dequeue_in deve ser ativado. No ciclo seguinte, o dado removido aparecerá em data_out.
  
 # Entradas:
@@ -45,4 +45,12 @@ dequeue_in (1 bit): Sinal para remover dados da fila.
 
 data_out (8 bits): Dados removidos da fila.
 
-len_out (3 bits): Indica o número de posições atualmente ocupadas na fila.
+len_out (8 bits): Indica o número de posições atualmente ocupadas na fila.
+
+## 🔝 TOP (1 MHz)
+
+O módulo TOP é responsável por integrar os módulos `deserializador` e `fila`. Ele recebe um clock de 1 MHz e, por meio de outro módulo, gera dois novos sinais de clock:
+
+- 100 KHz para o deserializador
+- 10 KHz para a fila
+No módulo TOP também ocorre a transformação do sinal len_out em ack_in.
