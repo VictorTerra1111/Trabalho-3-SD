@@ -1,5 +1,16 @@
 # Trabalho 3 de Sistemas Digitais: Múltiplos Domínios de Relógio
 
+# Compilando...
+ Em seu terminal, clone o repositório em sua máquina. Para ativar o modelsim, se está no servidor da PUCRS:
+ git clone [https://github.com/VictorTerra1111/Trabalho-3-SD/](https://github.com/VictorTerra1111/Trabalho-3-SD.git)
+
+ cd Trabalho-3-SD
+ cd SIM
+ cd tb_do_top
+ source /soft64/source_gaph
+ module load questa
+ vsim -do sim.do
+ 
 # 💡 Módulos
 
 1. TOP (1 MHz)
