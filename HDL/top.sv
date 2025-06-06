@@ -43,6 +43,9 @@ module top(
         .clk_100KHz(clk_100KHz)
     );
 
+    assign ack_in = (len_out < 8);
+
+    /*
     always @(posedge clk_10KHz or posedge reset) begin
         if (reset) begin
             enqueue_in <= 0;
@@ -57,5 +60,5 @@ module top(
             end
         end
     end
-
+*/
 endmodule
